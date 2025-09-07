@@ -1,12 +1,11 @@
-/* Light, friendly palette */
 :root{
-  --bg: #f7fafc;            /* page background */
-  --card: #ffffff;           /* cards */
-  --ink: #0f172a;            /* main text */
-  --muted: #586174;          /* secondary text */
-  --border: #e5e7eb;         /* borders */
-  --accent: #2563eb;         /* blue */
-  --accent-2: #10b981;       /* mint */
+  --bg: #f7fafc;            
+  --card: #ffffff;           
+  --ink: #0f172a;           
+  --muted: #586174;          
+  --border: #e5e7eb;         
+  --accent: #2563eb;        
+  --accent-2: #10b981;       
   --shadow: 0 10px 30px rgba(17, 24, 39, .08);
 }
 
@@ -19,10 +18,8 @@ body{
   font: 16px/1.5 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
 }
 
-/* Layout */
 .container{max-width: 960px; margin: 0 auto; padding: 16px}
 
-/* Hero */
 .hero{
   background: linear-gradient(135deg, rgba(37,99,235,.12), rgba(16,185,129,.12));
   border-bottom: 1px solid var(--border);
@@ -30,7 +27,6 @@ body{
 .hero h1{margin: .2em 0 .1em; font-size: 2rem; letter-spacing: .2px}
 .hero p{margin: 0 0 8px; color: var(--muted)}
 
-/* Card */
 .card{
   background: var(--card);
   border: 1px solid var(--border);
@@ -40,7 +36,6 @@ body{
   box-shadow: var(--shadow);
 }
 
-/* Fields */
 .field{display:block; margin: 10px 0}
 .field > span{display:block; margin-bottom:6px; color: var(--muted); font-size: .95rem}
 input, select{
@@ -103,7 +98,6 @@ button:active, .btn:active{transform: translateY(1px)}
   border: 1px solid var(--border);
 }
 
-/* Tips */
 .tips{margin-top: 12px}
 .tips summary{cursor: pointer; color: var(--accent)}
 .tips code{
@@ -112,7 +106,7 @@ button:active, .btn:active{transform: translateY(1px)}
   border-radius: 6px;
 }
 
-/* Footer */
+
 .foot{
   margin-top: 24px;
   border-top: 1px solid var(--border);
