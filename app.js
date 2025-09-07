@@ -1,4 +1,3 @@
-// Quick QR — vanilla JS, no libraries
 const $ = (s) => document.querySelector(s);
 const textEl   = $("#text");
 const sizeEl   = $("#size");
@@ -22,7 +21,6 @@ function buildQrUrl({ text, size, margin, ecl }) {
     margin: String(margin),
     ecc: ecl
   });
-  // add timestamp to prevent caching issues when regenerating same text
   qs.append("t", String(Date.now()));
   return `${base}?${qs.toString()}`;
 }
@@ -65,7 +63,6 @@ form.addEventListener("submit", (e) => {
   openA.href = url;
 });
 
-// Allow pressing Enter in the main input to generate
 textEl.addEventListener("keydown", (e) => {
   if (e.key === "Enter") {
     e.preventDefault();
