@@ -2,100 +2,77 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Quick QR — Single & Bulk</title>
+  <title>Quick QR</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="./style.css" />
-  <!-- QR + ZIP helpers (tiny, from CDN) -->
-  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js"></script>
+  <meta name="description" content="Create QR codes instantly — no account, no uploads." />
 </head>
 <body>
-<header class="wrap">
-  <h1>Quick QR</h1>
-  <p>Create QR codes — single or bulk — fully offline in your browser.</p>
-</header>
-
-<main class="wrap">
-  <div class="tabs">
-    <button class="tab active" data-tab="single">Single</button>
-    <button class="tab" data-tab="bulk">Bulk</button>
-  </div>
-
-  <!-- SINGLE -->
-  <section id="single" class="panel show">
-    <label>Text / URL
-      <input id="singleText" placeholder="https://example.com or any text" />
-    </label>
-    <div class="row">
-      <label>Size (px)
-        <input id="size" type="number" min="128" max="1024" value="320" />
-      </label>
-      <label>Margin
-        <input id="margin" type="number" min="0" max="16" value="2" />
-      </label>
-      <label>Error correction
-        <select id="ecl">
-          <option value="L">L (low)</option>
-          <option value="M" selected>M</option>
-          <option value="Q">Q</option>
-          <option value="H">H (high)</option>
-        </select>
-      </label>
+  <header class="hero">
+    <div class="container">
+      <h1>Quick QR</h1>
+      <p>Create QR codes instantly — clean, fast, and local.</p>
     </div>
+  </header>
 
-    <div class="actions">
-      <button id="genSingle">Generate</button>
-      <button id="downloadPng" disabled>Download PNG</button>
-      <button id="downloadSvg" disabled>Download SVG</button>
+  <main class="container">
+    <section class="card">
+      <form id="qrForm" autocomplete="off">
+        <label class="field">
+          <span>Text / URL</span>
+          <input id="text" type="text" placeholder="https://example.com or any text" required />
+        </label>
+
+        <div class="grid">
+          <label class="field">
+            <span>Size (px)</span>
+            <input id="size" type="number" min="128" max="1024" value="320" />
+          </label>
+          <label class="field">
+            <span>Margin</span>
+            <input id="margin" type="number" min="0" max="16" value="2" />
+          </label>
+          <label class="field">
+            <span>Error Correction</span>
+            <select id="ecl">
+              <option value="L">L (low)</option>
+              <option value="M" selected>M (medium)</option>
+              <option value="Q">Q (quartile)</option>
+              <option value="H">H (high)</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="actions">
+          <button id="generate" type="submit">Generate</button>
+          <a id="download" class="btn secondary" href="#" download="qr.png" aria-disabled="true">Download PNG</a>
+          <a id="openNew" class="btn tertiary" href="#" target="_blank" rel="noopener" aria-disabled="true">Open in new tab</a>
+        </div>
+
+        <p id="status" class="status" role="status" aria-live="polite"></p>
+
+        <div class="preview">
+          <img id="preview" alt="QR preview" />
+        </div>
+
+        <details class="tips">
+          <summary>Tips & examples</summary>
+          <ul>
+            <li>Wi-Fi QR: <code>WIFI:S:MyWifi;T:WPA;P:supersecret;;</code></li>
+            <li>Text: <code>Hello from Quick QR</code></li>
+            <li>Links: <code>https://yourdomain.com/page</code></li>
+          </ul>
+        </details>
+      </form>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="container">
+      <small>© <span id="year"></span> Quick QR — no tracking, no uploads.</small>
     </div>
+  </footer>
 
-    <div class="preview">
-      <img id="preview" alt="QR preview" />
-    </div>
-    <small class="muted">Nothing is uploaded. Everything runs locally.</small>
-  </section>
-
-  <!-- BULK -->
-  <section id="bulk" class="panel">
-    <p>Paste one item per line. Optional filename: use <code>filename, text</code>. Example:<br>
-      <code>wifi, WIFI:S:MyWifi;T:WPA;P:supersecret;;</code></p>
-    <textarea id="bulkInput" placeholder="hello world
-https://example.com
-mycode, https://example.com/signup?ref=abc123"></textarea>
-
-    <div class="row">
-      <label>Size (px)
-        <input id="bSize" type="number" min="128" max="1024" value="320" />
-      </label>
-      <label>Margin
-        <input id="bMargin" type="number" min="0" max="16" value="2" />
-      </label>
-      <label>Error correction
-        <select id="bEcl">
-          <option value="L">L</option>
-          <option value="M" selected>M</option>
-          <option value="Q">Q</option>
-          <option value="H">H</option>
-        </select>
-      </label>
-      <label>Max items
-        <input id="bMax" type="number" min="1" max="500" value="100" />
-      </label>
-    </div>
-
-    <div class="actions">
-      <button id="genBulk">Generate ZIP</button>
-    </div>
-    <small class="muted">We’ll make a ZIP of PNG files. Large batches may take a moment.</small>
-    <pre id="bulkLog" class="log"></pre>
-  </section>
-</main>
-
-<footer class="wrap foot">
-  <small>© <span id="year"></span> Quick QR — Local-first, no tracking.</small>
-</footer>
-
-<script src="./app.js"></script>
+  <script src="./app.js"></script>
 </body>
 </html>
