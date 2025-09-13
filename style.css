@@ -49,11 +49,9 @@ input, select{
 }
 input:focus, select:focus{border-color: var(--accent); box-shadow: 0 0 0 3px rgba(37,99,235,.15)}
 
-/* Grid for controls */
 .grid{display:grid; grid-template-columns: repeat(3, 1fr); gap: 12px}
 @media (max-width: 720px){ .grid{grid-template-columns: 1fr} }
 
-/* Buttons */
 .actions{display:flex; gap:10px; flex-wrap: wrap; margin-top: 10px}
 button, .btn{
   -webkit-appearance: none;
@@ -86,7 +84,6 @@ button:active, .btn:active{transform: translateY(1px)}
   opacity: .55;
 }
 
-/* Status + preview */
 .status{margin: 8px 0 0; color: var(--muted)}
 .preview{display:flex; justify-content:center; align-items:center; margin-top: 12px}
 .preview img{
