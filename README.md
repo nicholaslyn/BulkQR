@@ -1,4 +1,4 @@
-# Quick QR — Single & Bulk
+# Quick QR - Single & Bulk
 
 Create QR codes right in your browser. Nothing uploads anywhere.
 
@@ -11,7 +11,7 @@ Create QR codes right in your browser. Nothing uploads anywhere.
 Open `index.html` in your browser. For GitHub Pages, push this folder to a repo and enable Pages.
 
 ### Notes
-- Bulk defaults to a max of 100 items per run to keep it snappy — adjust in the UI.
+- Bulk defaults to a max of 100 items per run to keep it snappy - adjust in the UI.
 - Everything runs client-side using:
   - [`qrcode`](https://github.com/soldair/node-qrcode) for generation
   - `jszip` + `file-saver` for zipping & download
